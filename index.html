@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Mindflight7 | Book a VR incursion (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#231F20; --paper:#FFFFFF; --mist:#F4F2F5; --line:#E2DCE4; --muted:#686170;
+  --brand:#DF1BA2; --brand-ink:#A80F78; --brand-soft:#FCE9F5;
+  --orbit:#24133A; --orbit-ink:#F3ECF8; --orbit-muted:#B9A9C9;
+  --save:#0B7A52; --save-soft:#E2F3EB; --warn:#9A5300; --warn-soft:#FFF2DF;
+  --focus:#7A3CFF;
+  --r-s:8px; --r-m:12px; --r-l:20px;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#F1EDF3; --paper:#1B1520; --mist:#120E16; --line:#352C3C; --muted:#A99FB0;
+    --brand:#F04DB8; --brand-ink:#FF8AD3; --brand-soft:#3A1431;
+    --orbit:#0C0712; --orbit-ink:#F3ECF8; --orbit-muted:#A796B8;
+    --save:#4CD49A; --save-soft:#11301F; --warn:#FFB65C; --warn-soft:#3A2810;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F1EDF3; --paper:#1B1520; --mist:#120E16; --line:#352C3C; --muted:#A99FB0;
+  --brand:#F04DB8; --brand-ink:#FF8AD3; --brand-soft:#3A1431;
+  --orbit:#0C0712; --orbit-ink:#F3ECF8; --orbit-muted:#A796B8;
+  --save:#4CD49A; --save-soft:#11301F; --warn:#FFB65C; --warn-soft:#3A2810;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--mist);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+img{max-width:100%}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* team banner */
+.mockbar{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:8px 20px;background:var(--orbit);color:var(--orbit-ink);font-size:14px}
+.mockbar button{background:none;border:1px solid var(--orbit-muted);color:var(--orbit-ink);border-radius:999px;padding:4px 12px;cursor:pointer}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1120px;margin:0 auto;padding:22px 20px 8px}
+.brandmark{font:700 19px/1 var(--display);letter-spacing:-.01em}
+.brandmark span{color:var(--brand)}
+.top .sub{color:var(--muted);font-size:14px}
+.linkbtn{background:none;border:0;color:var(--brand-ink);font-weight:600;cursor:pointer;padding:6px 0;text-decoration:underline;text-underline-offset:3px}
+
+/* layout */
+.shell{max-width:1120px;margin:0 auto;padding:8px 20px 64px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:start}
+.grid.with-cart{grid-template-columns:minmax(0,1fr) 340px}
+@media (max-width:900px){.grid.with-cart{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-l);padding:28px}
+@media (max-width:560px){.panel{padding:20px}}
+
+/* progress */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 22px;padding:0;list-style:none}
+.steps li{font-size:13px;color:var(--muted);padding-top:10px;border-top:4px solid var(--line)}
+.steps li.done{border-color:var(--brand);color:var(--ink)}
+.steps li.now{border-color:var(--brand);color:var(--ink);font-weight:700}
+.steps b{font-weight:inherit}
+
+h1,h2,h3{margin:0}
+.title{font:500 clamp(24px,3.4vw,32px)/1.15 var(--display);letter-spacing:-.02em;margin-bottom:8px}
+.lede{color:var(--muted);margin:0 0 24px;max-width:60ch}
+.h3{font:700 17px/1.3 var(--body);margin:0 0 4px}
+.hint{color:var(--muted);font-size:14px;margin:4px 0 0}
+
+/* fields */
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+.fields .full{grid-column:1/-1}
+@media (max-width:560px){.fields{grid-template-columns:1fr}}
+label.f,span.f{display:block;font-weight:600;font-size:15px}
+.panel.bare{background:none;border:0;padding:0}
+label.f .optional{font-weight:400;color:var(--muted)}
+.input,.select,.textarea{display:block;width:100%;margin-top:6px;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--r-s);background:var(--paper)}
+.input:focus,.select:focus,.textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 3px var(--brand-soft)}
+.textarea{min-height:84px;resize:vertical}
+.err{color:#C0244A;font-size:13px;margin-top:4px;min-height:0}
+.input.bad{border-color:#C0244A}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:15px;cursor:pointer}
+.check input{width:18px;height:18px;margin-top:3px;accent-color:var(--brand);flex:none}
+.group{margin-top:26px}
+.group:first-child{margin-top:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:500}
+.chip[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft);color:var(--brand-ink);font-weight:700}
+.chip:disabled{opacity:.4;cursor:not-allowed;text-decoration:line-through}
+
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px;background:var(--mist);flex-wrap:wrap;margin-top:8px}
+.seg button{border:0;background:none;border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(35,31,32,.15)}
+@media (max-width:560px){.seg{display:grid;grid-template-columns:repeat(3,1fr);border-radius:14px;width:100%}.seg button{border-radius:11px;padding:8px 6px;font-size:14px;line-height:1.2}}
+
+.flights{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
+.flight{text-align:left;border:1.5px solid var(--line);background:var(--paper);border-radius:var(--r-m);padding:14px;cursor:pointer}
+.flight b{display:block;font-size:16px}
+.flight span{color:var(--muted);font-size:13px}
+.flight[aria-pressed="true"]{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand);background:var(--brand-soft)}
+.flight.help{border-style:dashed}
+
+.stepper{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:var(--r-s);margin-top:6px;background:var(--paper)}
+.stepper button{width:44px;height:46px;border:0;background:none;font-size:20px;cursor:pointer;color:var(--brand-ink)}
+.stepper input{width:80px;border:0;text-align:center;font-weight:700;font-size:18px;background:none;padding:10px 0}
+.stepper input:focus{outline:none}
+
+.nudge{display:flex;gap:10px;align-items:flex-start;background:var(--save-soft);color:var(--save);border-radius:var(--r-s);padding:10px 12px;font-size:14px;font-weight:600;margin-top:10px}
+.nudge::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:currentColor;margin-top:6px}
+.notice{background:var(--warn-soft);color:var(--warn);border-radius:var(--r-s);padding:10px 12px;font-size:14px;margin-top:10px;font-weight:500}
+.good{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:var(--r-s);padding:10px 12px;font-size:14px;margin-top:10px;font-weight:600}
+.good::before{content:"\2713";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--save);color:#fff;font-size:12px;flex:none}
+.perk{display:flex;gap:10px;align-items:center;background:var(--save-soft);color:var(--save);border-radius:var(--r-s);padding:8px 12px;font-size:14px;font-weight:600;margin-top:8px}
+.perk .pct{background:var(--save);color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;flex:none;white-space:nowrap}
+.deal{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;margin-top:10px;padding:12px 12px 12px 14px;border:2px solid var(--brand);background:var(--brand-soft);border-radius:var(--r-m);color:var(--ink);font-size:14px;line-height:1.4}
+.deal-badge{font:700 13px/1 var(--display);background:var(--brand);color:#fff;border-radius:8px;padding:8px 9px;white-space:nowrap;transform:rotate(-2deg)}
+.deal-text b{color:var(--brand-ink);font-weight:800}
+.deal-btn{border:0;background:var(--brand);color:#fff;font-weight:700;border-radius:999px;padding:10px 16px;cursor:pointer;white-space:nowrap;font-size:14px;box-shadow:0 4px 12px rgba(223,27,162,.28)}
+.deal-btn:hover{background:var(--brand-ink);transform:translateY(-1px)}
+.deal.fresh .deal-badge{animation:wiggle .7s ease-in-out 2}
+@keyframes wiggle{0%,100%{transform:rotate(-2deg)}30%{transform:rotate(-9deg) scale(1.1)}60%{transform:rotate(5deg) scale(1.05)}}
+.perk.pop{animation:pop .5s cubic-bezier(.2,1.5,.4,1)}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
+.day.eb{box-shadow:inset 0 0 0 2px var(--brand)}
+@media (max-width:560px){.deal{grid-template-columns:auto 1fr}.deal-btn{grid-column:1/-1;justify-self:start}}
+.perk.hint{background:none;border:1.5px dashed var(--line);color:var(--muted);font-weight:500}
+.perk.hint .pct{background:none;border:1.5px solid var(--save);color:var(--save)}
+.checking{color:var(--muted);font-size:14px;margin-top:10px;display:flex;gap:8px;align-items:center}
+.spin{width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.prefill{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--brand-soft);color:var(--brand-ink);border-radius:var(--r-m);padding:12px 16px;margin-bottom:22px;font-weight:600}
+.skip{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1.5px dashed var(--line);border-radius:var(--r-m);padding:12px 16px;margin-bottom:24px;font-size:15px}
+
+/* calendar */
+.cal{border:1.5px solid var(--line);border-radius:var(--r-m);padding:12px;max-width:380px;margin-top:8px;background:var(--paper)}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cal-head b{font-size:15px}
+.cal-head button{border:1px solid var(--line);background:var(--paper);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:16px}
+.cal-head button:disabled{opacity:.3;cursor:default}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.cal-grid .dow{font-size:12px;color:var(--muted);padding:4px 0}
+.day{position:relative;border:0;background:none;border-radius:8px;height:40px;cursor:pointer;font-weight:600;font-size:14px}
+.day:hover:not(:disabled){background:var(--mist)}
+.day:disabled{color:var(--line);cursor:default;font-weight:400}
+.day.sel,.day.sel:hover:not(:disabled){background:var(--brand);color:#fff}
+.day.req{box-shadow:inset 0 0 0 2px var(--warn);color:var(--warn)}
+.day.off::after{content:"";position:absolute;left:50%;bottom:5px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--save)}
+.day.sel.off::after{background:#fff}
+.cal-legend{font-size:13px;color:var(--muted);margin-top:8px;display:flex;gap:6px;align-items:center}
+.cal-legend i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--save)}
+
+.sessions{margin-top:10px;border:1.5px solid var(--line);border-radius:var(--r-m);overflow:hidden}
+.sessions .row{display:flex;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--line);font-size:15px}
+.sessions .row:first-child{border-top:0}
+.sessions .row span{color:var(--muted)}
+
+.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{border:0;border-radius:999px;padding:14px 26px;font-weight:700;font-size:16px;cursor:pointer;background:var(--brand);color:#fff}
+.btn:hover{background:var(--brand-ink)}
+.btn.ghost{background:none;color:var(--ink);border:1.5px solid var(--line)}
+.btn.ghost:hover{background:var(--mist)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* school search */
+.search-wrap{position:relative}
+.results{position:absolute;left:0;right:0;top:100%;z-index:5;background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-s);margin-top:4px;max-height:280px;overflow:auto;box-shadow:0 12px 30px rgba(35,31,32,.12)}
+.results button{display:block;width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:none;padding:10px 14px;cursor:pointer}
+.results button:first-child{border-top:0}
+.results button:hover,.results button:focus{background:var(--mist)}
+.results small{display:block;color:var(--muted)}
+.picked{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1.5px solid var(--brand);background:var(--brand-soft);border-radius:var(--r-m);padding:14px 16px;margin-top:10px}
+.picked b{display:block}
+.picked small{color:var(--muted)}
+
+/* cart */
+.cart{position:sticky;top:16px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden}
+.cart-head{background:var(--orbit);color:var(--orbit-ink);padding:18px 20px}
+.cart-head small{color:var(--orbit-muted);display:block;font-size:13px}
+.cart-head b{font:500 19px/1.25 var(--display);display:block;margin-top:2px}
+.cart-body{padding:16px 20px}
+.cart-row{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:5px 0}
+.cart-row span:first-child{color:var(--muted)}
+.cart-total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin-top:10px;padding-top:12px}
+.cart-total b{font:500 24px/1 var(--display)}
+.cart-note{font-size:13px;color:var(--muted);margin-top:10px}
+@media (max-width:900px){.cart{position:static}}
+
+/* loading */
+.preflight{max-width:560px;margin:40px auto;text-align:left}
+.preflight ol{list-style:none;padding:0;margin:24px 0 0}
+.preflight li{display:flex;gap:14px;align-items:center;padding:14px 0;border-top:1px solid var(--line);color:var(--muted);transition:color .3s}
+.preflight li .mk{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;font-size:14px;font-weight:700}
+.preflight li.on{color:var(--ink)}
+.preflight li.on .mk{border-color:var(--brand);border-top-color:transparent;animation:spin .8s linear infinite}
+.preflight li.ok{color:var(--ink)}
+.preflight li.ok .mk{border-color:var(--save);background:var(--save);color:#fff;animation:none}
+.preflight li small{display:block;color:var(--muted);font-size:13px}
+
+/* ticket / review */
+.ticket{background:var(--paper);border-radius:var(--r-l);overflow:hidden;border:1px solid var(--line)}
+.ticket-top{background:var(--orbit);color:var(--orbit-ink);padding:26px 28px 30px;position:relative}
+.ticket-top small{color:var(--orbit-muted);font-size:14px}
+.ticket-top .flightname{font:700 clamp(26px,4.6vw,40px)/1.05 var(--display);letter-spacing:-.02em;margin:6px 0 18px}
+.legs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:640px){.legs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.legs div small{display:block;color:var(--orbit-muted);font-size:12px}
+.legs div b{font-size:15px}
+.perf{height:22px;background:
+  radial-gradient(circle at 0 50%,var(--mist) 11px,transparent 12px) left/22px 22px no-repeat,
+  radial-gradient(circle at 100% 50%,var(--mist) 11px,transparent 12px) right/22px 22px no-repeat,
+  linear-gradient(90deg,transparent 18px,var(--line) 18px,var(--line) calc(100% - 18px),transparent calc(100% - 18px)) center/100% 2px no-repeat;
+  background-color:var(--paper)}
+.ticket-body{padding:8px 28px 28px}
+@media (max-width:560px){.ticket-top,.ticket-body{padding-left:20px;padding-right:20px}}
+
+.lines{margin:6px 0 0;padding:0;list-style:none}
+.line{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
+.line:first-child{border-top:0}
+.line .what small{display:block;color:var(--muted);font-size:13px}
+.line .amt{font-weight:700;white-space:nowrap;text-align:right}
+.line.offer .amt{color:var(--save)}
+.line.offer .what b{color:var(--save)}
+.line .was{text-decoration:line-through;color:var(--muted);font-weight:500;margin-right:6px}
+@media (max-width:560px){.line .amt .stamp{display:block;width:max-content;margin:4px 0 0 auto}}
+.stamp{display:inline-block;margin-left:8px;font-size:12px;font-weight:700;color:var(--save);border:1.5px solid var(--save);border-radius:6px;padding:1px 6px;transform:rotate(-3deg)}
+.reveal .line{opacity:0;transform:translateY(6px)}
+.reveal .line.in{opacity:1;transform:none;transition:opacity .35s,transform .35s}
+.reveal .line.offer.in .stamp{animation:stamp .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stamp{from{transform:scale(2.2) rotate(-12deg);opacity:0}to{transform:scale(1) rotate(-3deg);opacity:1}}
+.totalbox{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:8px;padding-top:16px;border-top:2px solid var(--ink)}
+.totalbox small{color:var(--muted);display:block;font-size:13px}
+.totalbox .big{font:700 clamp(30px,5vw,40px)/1 var(--display);letter-spacing:-.02em}
+.savebanner{margin-top:16px;background:var(--save-soft);color:var(--save);border-radius:var(--r-m);padding:14px 16px;font-weight:700;opacity:0;transition:opacity .5s}
+.savebanner.in{opacity:1}
+.promo{display:flex;gap:8px;margin-top:6px}
+.promo .input{margin-top:0;text-transform:uppercase}
+.promo .btn{padding:10px 18px;font-size:15px}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px}
+@media (max-width:700px){.twocol{grid-template-columns:1fr}}
+.kv{margin:0}
+.kv div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--line);font-size:14px}
+.kv div:first-child{border-top:0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;text-align:right;font-weight:600;max-width:60%}
+
+/* modal */
+.scrim{position:fixed;inset:0;background:rgba(20,10,28,.55);display:grid;place-items:center;padding:20px;z-index:50;overflow:auto}
+.modal{background:var(--paper);border-radius:var(--r-l);max-width:820px;width:100%;padding:26px;position:relative;max-height:calc(100vh - 40px);overflow:auto}
+.modal .close{position:absolute;top:14px;right:14px;border:0;background:var(--mist);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:18px}
+@media (max-width:720px){.split{grid-template-columns:1fr}}
+.side{border:1.5px solid var(--line);border-radius:var(--r-m);padding:18px}
+.side.alt{background:var(--mist)}
+.quick{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+
+/* email preview */
+.email{border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden;margin-top:14px}
+.email .meta{background:var(--mist);padding:12px 16px;font-size:14px}
+.email .meta div{color:var(--muted)}
+.email .meta b{color:var(--ink)}
+.email .bodym{padding:20px}
+.email .bodym .btn{display:inline-block;text-decoration:none;margin:12px 0}
+
+/* toast */
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--orbit);color:var(--orbit-ink);padding:12px 18px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:all .3s;z-index:60;max-width:calc(100% - 40px)}
+#toast.show{opacity:1;transform:translateX(-50%)}
+
+/* setup */
+.setup-head{max-width:1120px;margin:0 auto;padding:28px 20px 6px}
+.setup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:820px){.setup-grid{grid-template-columns:1fr}}
+.opt-list{display:grid;gap:8px;margin-top:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:var(--r-m);padding:12px 14px;cursor:pointer;background:var(--paper)}
+.opt input{margin-top:4px;accent-color:var(--brand);width:18px;height:18px;flex:none}
+.opt b{display:block;font-size:15px}
+.opt small{color:var(--muted);font-size:13px}
+.opt:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+.ref{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+.ref td{padding:6px 0;border-top:1px solid var(--line)}
+.ref td:last-child{text-align:right;font-weight:600}
+.tries{margin:10px 0 0;padding-left:20px;font-size:14px}
+.tries li{margin:6px 0}
+
+.okstamp{position:absolute;right:26px;top:24px;font:700 18px/1 var(--display);color:#7BE3B5;border:3px solid #7BE3B5;border-radius:10px;padding:8px 12px;transform:rotate(-8deg);animation:okstamp .6s cubic-bezier(.2,1.6,.4,1) .3s both}
+@keyframes okstamp{from{transform:scale(2.4) rotate(-20deg);opacity:0}to{transform:rotate(-8deg);opacity:1}}
+@media (max-width:560px){.okstamp{right:16px;top:16px;font-size:14px}}
+.paycard{border:2px solid var(--ink);border-radius:var(--r-m);padding:18px}
+.paytop{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.paid-chip{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--warn-soft);color:var(--warn)}
+.paid-chip.is-paid{background:var(--save-soft);color:var(--save)}
+.payamt{font:700 32px/1.1 var(--display);margin:12px 0 4px}
+.paybtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.paybtns .btn{padding:12px 20px;font-size:15px}
+.ready{margin:10px 0 0;padding-left:20px}
+.ready li{margin:8px 0}
+.done-hero{text-align:center;padding:10px 0 8px}
+.done-hero .title{margin-top:10px}
+.timeline{list-style:none;padding:0;margin:14px 0 0}
+.timeline li{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.timeline li:first-child{border-top:0}
+.timeline .when{min-width:120px;color:var(--muted);font-size:14px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="mockbar" id="mockbar" hidden>
+  <span>Mockup for team testing. Nothing is booked and no emails are sent.</span>
+  <button type="button" id="toSetup">Change setup</button>
+</div>
+<main id="app"></main>
+<div id="modalRoot"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- sample data (placeholders until the rules sheet exists) ---------- */
+var FLIGHTS = [
+  {slug:"junior-space-explorer", name:"Junior Space Explorer", type:"primary",   years:"F to 2",  lengths:[30,45,60]},
+  {slug:"ecovoyage",             name:"EcoVoyage",             type:"primary",   years:"3 to 6",  lengths:[45,60,90]},
+  {slug:"ocean-depths",          name:"Ocean Depths",          type:"primary",   years:"3 to 6",  lengths:[45,60]},
+  {slug:"space-explorer",        name:"Space Explorer",        type:"secondary", years:"7 to 10", lengths:[60,90]},
+  {slug:"inside-the-cell",       name:"Inside the Cell",       type:"secondary", years:"7 to 10", lengths:[45,60,90]},
+  {slug:"ancient-worlds",        name:"Ancient Worlds",        type:"secondary", years:"7 to 10", lengths:[45,60]},
+  {slug:"careers-in-stem",       name:"Careers in STEM",       type:"secondary", years:"9 to 12", lengths:[60,90]}
+];
+var PRICE = {30:14, 45:18, 60:22, 90:27.5};
+var MINIMUM = 880, GST = 0.10, LEAD_DAYS = 14, EARLY_DAYS = 60, BUFFER = 15;
+var PD_VALUE = 440, FREE_KM = 50, PER_KM = 1.5, TRAVEL_CAP = 300;
+var MAX_PER_SESSION = {NSW:30, VIC:50, WA:34, SA:30, QLD:40, Other:30};
+var ACTIVE_STATES = ["NSW","VIC","WA","SA","QLD"];
+var BASES = {VIC:"Melbourne", NSW:"Sydney", QLD:"Brisbane", WA:"Perth", SA:"Adelaide"};
+var SCHOOLS = [
+  {name:"Riverbend Primary School",   suburb:"Box Hill",   state:"VIC", postcode:"3128", km:14},
+  {name:"Goldfields Secondary College",suburb:"Ballarat",  state:"VIC", postcode:"3350", km:116},
+  {name:"Harbourview Public School",  suburb:"Parramatta", state:"NSW", postcode:"2150", km:24},
+  {name:"Blue Gum High School",       suburb:"Katoomba",   state:"NSW", postcode:"2780", km:102},
+  {name:"Sunridge State School",      suburb:"Chermside",  state:"QLD", postcode:"4032", km:11},
+  {name:"Swan Valley Primary School", suburb:"Midland",    state:"WA",  postcode:"6056", km:18},
+  {name:"Kingsford Primary School",   suburb:"Glenelg",    state:"SA",  postcode:"5045", km:12},
+  {name:"Derwent Valley Primary School",suburb:"New Norfolk",state:"TAS",postcode:"7140", km:null}
+];
+var HOLIDAYS = [
+  {date:"2026-11-03", states:["VIC"], name:"Melbourne Cup Day"},
+  {date:"2026-12-25", states:"all", name:"Christmas Day"},
+  {date:"2026-12-28", states:"all", name:"the Boxing Day public holiday"},
+  {date:"2027-01-01", states:"all", name:"New Year's Day"},
+  {date:"2027-01-26", states:"all", name:"Australia Day"}
+];
+var FIXED_CAPACITY = {"2026-11-18":0, "2026-11-19":40};
+var OFFERS = {
+  pd:      {label:"Free Teacher PD session", desc:"Bonus with every incursion booked this term (worth $440)"},
+  group:   {label:"Group discount, 25% off", desc:"50 or more students in one booking", pct:25},
+  early:   {label:"Early bird, 10% off", desc:"Incursion date 60 or more days away", pct:10},
+  offpeak: {label:"Monday and Friday, 10% off", desc:"Incursions held on a Monday or Friday", pct:10},
+  code:    {label:"Promo code TERM4, 15% off", desc:"Entered by the booker at the price step", pct:15}
+};
+var ORIGINS = [
+  {id:"none", label:"Book Now button (no flight)", sub:"Header or hub page"}
+].concat(FLIGHTS.map(function(f){return {id:f.slug, label:f.name+" page", sub:"?flight="+f.slug};}))
+ .concat([{id:"custom-workshop", label:"Custom workshops page", sub:"?flight=custom-workshop"}]);
+var ROLES = ["Classroom teacher","Head of learning area","Digital or immersive learning coordinator","Careers coordinator","Principal or leadership","Business manager","OSHC or holiday program coordinator","Other"];
+
+/* ---------- state ---------- */
+var setup = {origin:"space-explorer", offers:{pd:true,group:true,early:true,offpeak:true,code:true},
+             stacking:"stack", cart:true, weekend:"rep", dailyCap:150};
+var form, view, calMonth, modalMonth, checkTimer;
+function freshForm(){
+  return {first:"",last:"",email:"",phone:"",role:"",remind:false,news:false,
+    school:null, manual:false, venue:"School hall", parking:"", signin:"",
+    type:"primary", flight:null, years:[], students:50, length:60, customNote:"", brief:"",
+    sessionsWanted:0, date:null, dateStatus:null, dateRequest:false, start:"09:00",
+    promo:"", promoApplied:"", po:"", terms:false, skipNote:"", callTime:"Morning", skipped:false, showEarly:false};
+}
+
+/* ---------- helpers ---------- */
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function pad(n){return (n<10?"0":"")+n;}
+function iso(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+function parse(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2]);}
+function addDays(d,n){var x=new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);return x;}
+function daysBetween(a,b){return Math.round((b-a)/86400000);}
+var TODAY = (function(){var n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate());})();
+var DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var MONTH = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function nice(s){if(!s)return "";var d=parse(s);return DOW[d.getDay()]+" "+d.getDate()+" "+MON[d.getMonth()]+" "+d.getFullYear();}
+function niceShort(s){var d=parse(s);return DOW[d.getDay()]+" "+d.getDate()+" "+MON[d.getMonth()];}
+function money(n){return n.toLocaleString("en-AU",{style:"currency",currency:"AUD",minimumFractionDigits:2,maximumFractionDigits:2});}
+function round2(n){return Math.round(n*100)/100;}
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function toMin(t){var p=t.split(":");return (+p[0])*60+(+p[1]);}
+function fromMin(m){var h=Math.floor(m/60),mm=m%60,ap=h>=12?"pm":"am",hh=h%12||12;return hh+":"+pad(mm)+ap;}
+function toast(msg){var t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove("show");},3200);}
+var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function wait(ms){return new Promise(function(r){setTimeout(r,reduced?Math.min(ms,80):ms);});}
+
+function stateKey(){var s=form.school&&form.school.state;return MAX_PER_SESSION[s]?s:"Other";}
+function stateLabel(){return form.school?form.school.state:"your state";}
+function flightObj(){return FLIGHTS.filter(function(f){return f.slug===form.flight;})[0]||null;}
+function isActiveState(){return form.school && ACTIVE_STATES.indexOf(form.school.state)>-1;}
+function travelKm(){return form.school?form.school.km:null;}
+
+/* ---------- availability (simulated) ---------- */
+function remainingOn(dateStr,state){
+  var cap = +setup.dailyCap||150;
+  if (dateStr in FIXED_CAPACITY) return Math.min(cap,FIXED_CAPACITY[dateStr]);
+  var h = hash(dateStr+"|"+state)%100;
+  if (h<14) return 0;
+  if (h<28) return Math.round(cap*0.3);
+  if (h<42) return Math.round(cap*0.6);
+  return cap;
+}
+function holidayOn(dateStr,state){
+  for (var i=0;i<HOLIDAYS.length;i++){var h=HOLIDAYS[i];
+    if (h.date===dateStr && (h.states==="all"||h.states.indexOf(state)>-1)) return h;}
+  return null;
+}
+function availability(dateStr){
+  var d=parse(dateStr), state=form.school?form.school.state:"VIC", n=+form.students||0;
+  if (d<TODAY) return {ok:false,kind:"past"};
+  var hol=holidayOn(dateStr,state);
+  if (hol) return {ok:false,kind:"holiday",name:hol.name};
+  var dow=d.getDay();
+  if ((dow===0||dow===6) && setup.weekend!=="instant") return {ok:false,kind:setup.weekend==="rep"?"weekend":"weekendOff"};
+  if (daysBetween(TODAY,d)<LEAD_DAYS) return {ok:false,kind:"lead"};
+  var rem=remainingOn(dateStr,state);
+  if (rem===0) return {ok:false,kind:"full"};
+  if (n>rem) return {ok:false,kind:"partial",remaining:rem};
+  return {ok:true,remaining:rem};
+}
+function reasonText(dateStr,a){
+  var day=nice(dateStr), st=stateLabel();
+  switch(a.kind){
+    case "full": return day+" is fully booked in "+st+".";
+    case "partial": return day+" only has room for "+a.remaining+" more students in "+st+".";
+    case "holiday": return day+" is "+a.name+" in "+st+".";
+    case "weekend": return "Weekend incursions are arranged directly with our team.";
+    case "weekendOff": return "We don't run weekend incursions at the moment.";
+    case "lead": return "Bookings less than two weeks away need a quick check with our team first.";
+    default: return day+" isn't available.";
+  }
+}
+function nearestAvailable(dateStr,count){
+  var origin=parse(dateStr), found=[];
+  for (var off=1; off<=90 && found.length<count*3; off++){
+    [addDays(origin,off),addDays(origin,-off)].forEach(function(d){
+      if (d<TODAY) return; var s=iso(d); if (availability(s).ok) found.push({s:s,dist:off});
+    });
+  }
+  found.sort(function(a,b){return a.dist-b.dist||(a.s<b.s?-1:1);});
+  return found.slice(0,count).map(function(x){return x.s;}).sort();
+}
+
+/* ---------- sessions and price ---------- */
+function sessionPlan(){
+  var max=MAX_PER_SESSION[stateKey()], n=Math.max(1,+form.students||0);
+  var minS=Math.ceil(n/max), count=Math.max(minS, form.sessionsWanted||minS);
+  var base=Math.floor(n/count), extra=n%count, len=form.length==="custom"?60:form.length;
+  var t=toMin(form.start), rows=[];
+  for (var i=0;i<count;i++){var c=base+(i<extra?1:0);rows.push({start:t,end:t+len,students:c});t+=len+BUFFER;}
+  var last=rows[rows.length-1];
+  return {rows:rows,count:count,minS:minS,max:max,headsets:rows[0].students,late:last.end>toMin("15:30"),
+          arrive:rows[0].start-45};
+}
+function quoteOnly(){return form.type==="workshop"||form.length==="custom"||form.flight==="help";}
+function isRequest(){return quoteOnly()||form.dateRequest||!isActiveState();}
+function pricing(){
+  if (quoteOnly()) return null;
+  var p=PRICE[form.length], n=+form.students||0, raw=round2(n*p), base=Math.max(raw,MINIMUM);
+  var cand=[];
+  var o=setup.offers;
+  var d=form.date?parse(form.date):null;
+  if (o.group && n>=50) cand.push({key:"group",pct:25,label:"Group discount",why:n+" students, 50 or more"});
+  if (o.early && d && daysBetween(TODAY,d)>=EARLY_DAYS) cand.push({key:"early",pct:10,label:"Early bird",why:"Booked "+daysBetween(TODAY,d)+" days ahead"});
+  if (o.offpeak && d && (d.getDay()===1||d.getDay()===5)) cand.push({key:"offpeak",pct:10,label:DOW[d.getDay()]+" saver",why:"Monday and Friday incursions"});
+  if (o.code && form.promoApplied==="TERM4") cand.push({key:"code",pct:15,label:"Promo code TERM4",why:"Code applied"});
+  var used=cand;
+  if (setup.stacking==="best" && cand.length>1){
+    var best=cand.reduce(function(a,b){return b.pct>a.pct?b:a;});
+    used=[best];
+  }
+  var running=base;
+  used=used.map(function(x){var amt=round2(running*x.pct/100);running=round2(running-amt);return Object.assign({},x,{amt:amt});});
+  var km=travelKm(), travel=null, travelNote="";
+  if (!isActiveState()){travel=null;travelNote="Confirmed by our team";}
+  else if (km<=FREE_KM){travel=0;travelNote=km+" km from our "+BASES[form.school.state]+" crew base, inside the free zone";}
+  else {travel=Math.min(TRAVEL_CAP,round2((km-FREE_KM)*2*PER_KM));travelNote=km+" km from our "+BASES[form.school.state]+" crew base";}
+  var ex=round2(running+(travel||0)), gst=round2(ex*GST), total=round2(ex+gst);
+  return {p:p,n:n,raw:raw,base:base,minApplied:raw<MINIMUM,offers:used,skipped:cand.length-used.length,
+          afterOffers:running,travel:travel,travelNote:travelNote,km:km,ex:ex,gst:gst,total:total,
+          saved:round2(base-running),pd:!!o.pd};
+}
+function estimate(){
+  if (quoteOnly()) return null;
+  var p=PRICE[form.length], n=+form.students||0;
+  return Math.max(round2(n*p),MINIMUM);
+}
+
+/* ---------- rendering shell ---------- */
+function render(){
+  clearTimeout(checkTimer);
+  $("#mockbar").hidden = (view==="setup");
+  var app=$("#app");
+  if (view==="setup") app.innerHTML=setupHTML();
+  else if (view==="loading"||view==="confirming") app.innerHTML=loadingHTML();
+  else if (view==="done"||view==="requested") app.innerHTML=outcomeHTML();
+  else if (view==="skip") app.innerHTML=pageWrap(skipHTML(),false);
+  else app.innerHTML=pageWrap(stepHTML(),showCart());
+  bind();
+  window.scrollTo(0,0);
+}
+function showCart(){return setup.cart && view===3;}
+function headerHTML(){
+  return '<header class="top"><div><div class="brandmark">mind<span>flight</span>7</div>'+
+    '<div class="sub">Book a VR incursion</div></div>'+
+    ((view===1||view===2||view===3||view===4)?'<button type="button" class="linkbtn" data-act="saveLater">Save and finish later</button>':'')+
+    '</header>';
+}
+function stepsHTML(){
+  var labels=["Your details","School","Incursion",setup.cart?"Your cart":"Check and send"];
+  return '<ol class="steps" aria-label="Booking steps">'+labels.map(function(l,i){
+    var n=i+1, cls=n<view?"done":(n===view?"now":"");
+    return '<li class="'+cls+'"'+(n===view?' aria-current="step"':'')+'><b>'+n+'. '+l+'</b></li>';
+  }).join("")+'</ol>';
+}
+function pageWrap(inner,cart){
+  return headerHTML()+'<div class="shell">'+(typeof view==="number"?stepsHTML():"")+
+    '<div class="grid'+(cart?' with-cart':'')+'"><section class="panel'+(view===4&&setup.cart?' bare':'')+'">'+inner+'</section>'+
+    (cart?'<aside class="cart" id="cart" aria-label="Your cart">'+cartHTML()+'</aside>':'')+'</div></div>';
+}
+function stepHTML(){
+  if (view===1) return step1HTML();
+  if (view===2) return step2HTML();
+  if (view===3) return step3HTML();
+  if (view===4) return step4HTML();
+  return "";
+}
+
+/* ---------- setup page ---------- */
+function setupHTML(){
+  function radio(name,val,cur,label,sub){return '<label class="opt"><input type="radio" name="'+name+'" value="'+esc(val)+'"'+(cur===val?" checked":"")+'><span><b>'+esc(label)+'</b>'+(sub?'<small>'+esc(sub)+'</small>':'')+'</span></label>';}
+  var offers=Object.keys(OFFERS).map(function(k){return '<label class="opt"><input type="checkbox" name="offer" value="'+k+'"'+(setup.offers[k]?" checked":"")+'><span><b>'+OFFERS[k].label+'</b><small>'+OFFERS[k].desc+'</small></span></label>';}).join("");
+  var origins=ORIGINS.map(function(o){return radio("origin",o.id,setup.origin,o.label,o.sub);}).join("");
+  return '<div class="setup-head"><div class="brandmark">mind<span>flight</span>7</div>'+
+    '<h1 class="title" style="margin-top:18px">Booking page mockup: test setup</h1>'+
+    '<p class="lede">Pick a starting point, then go through the booking as a teacher would. Change any setting and run it again to compare. This page is for the team only; schools never see it.</p></div>'+
+    '<div class="shell"><div class="setup-grid">'+
+      '<section class="panel"><h2 class="h3">Where the teacher clicked Book</h2><p class="hint">Sets the flight that comes pre-filled.</p><div class="opt-list">'+origins+'</div></section>'+
+      '<div style="display:grid;gap:20px;align-content:start">'+
+        '<section class="panel"><h2 class="h3">Offers running</h2><p class="hint">Sample offers. Each one applies automatically when its condition is met.</p><div class="opt-list">'+offers+'</div>'+
+          '<h3 class="h3" style="margin-top:18px">When more than one offer applies</h3><div class="opt-list">'+
+          radio("stacking","stack",setup.stacking,"Stack them all","Each offer applies to the price left after the one before")+
+          radio("stacking","best",setup.stacking,"Best single offer only","The biggest discount wins; the free PD session always stays")+'</div></section>'+
+        '<section class="panel"><h2 class="h3">How the price is shown</h2><div class="opt-list">'+
+          radio("cart","on",setup.cart?"on":"off","Shopping cart","Running cart while choosing, full price before they book")+
+          radio("cart","off",setup.cart?"on":"off","Quote","No price on the page; a quote arrives after they send the request")+'</div></section>'+
+        '<section class="panel"><h2 class="h3">Weekend dates</h2><div class="opt-list">'+
+          radio("weekend","instant",setup.weekend,"Bookable instantly","")+
+          radio("weekend","rep",setup.weekend,"Arranged with our team","Picking a Saturday or Sunday opens the date prompt")+
+          radio("weekend","off",setup.weekend,"Not offered","Still opens the date prompt, never a dead end")+'</div>'+
+          '<label class="f" style="margin-top:18px">Students per day, per state <span class="optional">(placeholder)</span><input class="input" type="number" min="20" step="10" name="dailyCap" value="'+esc(setup.dailyCap)+'"></label></section>'+
+      '</div>'+
+      '<section class="panel"><h2 class="h3">Sample values in this mockup</h2><table class="ref"><tbody>'+
+        '<tr><td>30 / 45 / 60 / 90 minutes, per student</td><td>$14 / $18 / $22 / $27.50</td></tr>'+
+        '<tr><td>Custom length or custom workshop</td><td>Quoted by our team</td></tr>'+
+        '<tr><td>Minimum booking</td><td>$880 ex GST</td></tr>'+
+        '<tr><td>Students per session</td><td>NSW 30, VIC 50, WA 34, SA 30, QLD 40, other 30</td></tr>'+
+        '<tr><td>Travel</td><td>Free to 50 km, then $1.50/km each way, capped at $300</td></tr>'+
+        '<tr><td>Notice for instant booking</td><td>14 days</td></tr>'+
+        '<tr><td>Free Teacher PD session value</td><td>$440</td></tr>'+
+      '</tbody></table><p class="hint">Flights, schools and booked-out dates are made up for testing.</p></section>'+
+      '<section class="panel"><h2 class="h3">Things to try</h2><ul class="tries">'+
+        '<li>Pick Wed 18 Nov 2026: fully booked everywhere.</li>'+
+        '<li>Pick Thu 19 Nov 2026 with 50 students: only 40 places left.</li>'+
+        '<li>Riverbend Primary (VIC) on Tue 3 Nov 2026: Melbourne Cup Day.</li>'+
+        '<li>Goldfields Secondary College, Ballarat: travel fee.</li>'+
+        '<li>Derwent Valley Primary (TAS): outside our states, becomes a request.</li>'+
+        '<li>Set 44 students to see the group discount nudge.</li>'+
+        '<li>Enter code TERM4 at the price step.</li>'+
+        '<li>Leave halfway with "Save and finish later" to see the reminder email.</li>'+
+      '</ul><div class="actions" style="margin-top:20px"><button type="button" class="btn ghost" data-act="previewEmail">Preview the reminder email</button></div></section>'+
+    '</div><div class="actions"><span class="hint">Settings stay as they are until you change them.</span><button type="button" class="btn" data-act="start">Start booking as a teacher</button></div></div>';
+}
+
+/* ---------- step 1 ---------- */
+function step1HTML(){
+  var f=form;
+  return '<h1 class="title">Let\'s start with you</h1><p class="lede">So we know who to send the confirmation to. It takes about two minutes from here.</p>'+
+  '<div class="fields">'+
+    field("first","First name",f.first,"text","given-name")+
+    field("last","Last name",f.last,"text","family-name")+
+    field("email","School email",f.email,"email","email")+
+    field("phone","Mobile",f.phone,"tel","tel")+
+    '<label class="f full">Your role<select class="select" name="role"><option value="">Choose your role</option>'+
+      ROLES.map(function(r){return '<option'+(f.role===r?" selected":"")+'>'+esc(r)+'</option>';}).join("")+
+    '</select><div class="err" data-err="role"></div></label>'+
+    '<label class="check full"><input type="checkbox" name="remind"'+(f.remind?" checked":"")+'><span>If I don\'t finish, email me a link to pick up where I left off.</span></label>'+
+    '<label class="check full"><input type="checkbox" name="news"'+(f.news?" checked":"")+'><span>Send me occasional news and offers from Mindflight7.</span></label>'+
+  '</div>'+
+  '<div class="actions"><span class="hint">We only use these details for this booking.</span><button type="button" class="btn" data-act="next1">Continue to your school</button></div>';
+}
+function field(name,label,val,type,ac){
+  return '<label class="f">'+label+'<input class="input" name="'+name+'" type="'+type+'" autocomplete="'+ac+'" value="'+esc(val)+'"><div class="err" data-err="'+name+'"></div></label>';
+}
+
+/* ---------- step 2 ---------- */
+function step2HTML(){
+  var f=form, s=f.school;
+  var picked = s && !f.manual ? '<div class="picked"><div><b>'+esc(s.name)+'</b><small>'+esc(s.suburb)+' '+esc(s.state)+' '+esc(s.postcode)+'</small></div><button type="button" class="linkbtn" data-act="changeSchool">Change</button></div>' : '';
+  var finder = (s && !f.manual) ? picked :
+    (f.manual ? manualSchoolHTML() :
+     '<div class="search-wrap"><label class="f">Find your school<input class="input" name="schoolq" autocomplete="off" placeholder="School name, suburb or postcode"></label><div class="results" id="results" hidden></div></div>'+
+     '<p class="hint">Can\'t find it? <button type="button" class="linkbtn" data-act="manual">Enter your school\'s details</button></p>');
+  return '<h1 class="title">Where is the incursion?</h1><p class="lede">We bring the headsets and crew to you. This tells us which team travels and how far.</p>'+
+   finder+
+   '<div class="group"><span class="f" style="font-weight:600">Where will we set up?</span><div class="chips">'+
+     ["School hall","Library","Classroom","Gym","Other"].map(function(v){return '<button type="button" class="chip" data-venue="'+v+'" aria-pressed="'+(f.venue===v)+'">'+v+'</button>';}).join("")+
+   '</div><p class="hint">We need a clear space about the size of a classroom and two power points.</p></div>'+
+   '<div class="fields group">'+
+     '<label class="f full">Parking and access <span class="optional">(optional)</span><textarea class="textarea" name="parking" placeholder="Where our van can park, the best entrance, any stairs or lifts">'+esc(f.parking)+'</textarea></label>'+
+     '<label class="f full">Sign-in procedure <span class="optional">(optional)</span><textarea class="textarea" name="signin" placeholder="For example: sign in at the front office, WWCC checked on arrival">'+esc(f.signin)+'</textarea></label>'+
+   '</div>'+
+   '<div class="actions"><button type="button" class="btn ghost" data-act="back">Back</button><button type="button" class="btn" data-act="next2">Continue to the incursion</button></div>';
+}
+function manualSchoolHTML(){
+  var s=form.school||{};
+  return '<div class="fields">'+
+    '<label class="f full">School name<input class="input" name="m_name" value="'+esc(s.name||"")+'"><div class="err" data-err="m_name"></div></label>'+
+    '<label class="f">Suburb<input class="input" name="m_suburb" value="'+esc(s.suburb||"")+'"><div class="err" data-err="m_suburb"></div></label>'+
+    '<label class="f">State<select class="select" name="m_state">'+["","VIC","NSW","QLD","WA","SA","TAS","ACT","NT"].map(function(v){return '<option value="'+v+'"'+(s.state===v?" selected":"")+'>'+(v||"Choose")+'</option>';}).join("")+'</select><div class="err" data-err="m_state"></div></label>'+
+    '<label class="f">Postcode<input class="input" name="m_postcode" inputmode="numeric" maxlength="4" value="'+esc(s.postcode||"")+'"><div class="err" data-err="m_postcode"></div></label>'+
+  '</div><p class="hint"><button type="button" class="linkbtn" data-act="searchAgain">Search the school list instead</button></p>';
+}
+function manualKm(state,pc){
+  var n=+pc, metro={VIC:[3000,3207],NSW:[2000,2234],QLD:[4000,4179],WA:[6000,6199],SA:[5000,5199]}[state];
+  if (!metro) return null;
+  if (n>=metro[0]&&n<=metro[1]) return 6+(n%30);
+  return 70+(hash(pc)%260);
+}
+
+/* ---------- step 3 ---------- */
+function step3HTML(){
+  var f=form, fl=flightObj();
+  var pre = (setup.origin!=="none" && setup.origin===f.flight && fl) ?
+    '<div class="prefill"><span>You\'re booking '+esc(fl.name)+'</span><button type="button" class="linkbtn" data-act="clearFlight">Choose a different flight</button></div>' :
+    (setup.origin==="custom-workshop" && f.type==="workshop" ? '<div class="prefill"><span>You\'re asking about a custom workshop</span></div>' : '');
+  var list = FLIGHTS.filter(function(x){return x.type===f.type;});
+  var flightsHTML = f.type==="workshop" ?
+    '<label class="f group">Tell us about the workshop you have in mind<textarea class="textarea" name="brief" placeholder="Topic, year levels, what you want students to come away with">'+esc(f.brief)+'</textarea></label>' :
+    '<div class="flights">'+list.map(function(x){return '<button type="button" class="flight" data-flight="'+x.slug+'" aria-pressed="'+(f.flight===x.slug)+'"><b>'+esc(x.name)+'</b><span>Years '+esc(x.years)+'</span></button>';}).join("")+
+    '<button type="button" class="flight help" data-flight="help" aria-pressed="'+(f.flight==="help")+'"><b>Not sure yet</b><span>Our team will help you choose</span></button></div>';
+  var lens = [30,45,60,90].map(function(L){
+    var ok = !fl || fl.lengths.indexOf(L)>-1;
+    return '<button type="button" class="chip" data-len="'+L+'" aria-pressed="'+(f.length===L)+'"'+(ok?'':' disabled title="Not available for this flight"')+'>'+L+' min</button>';
+  }).join("")+'<button type="button" class="chip" data-len="custom" aria-pressed="'+(f.length==="custom")+'">Custom</button>';
+  var plan=sessionPlan();
+  var times=[];for(var m=toMin("08:30");m<=toMin("14:30");m+=15)times.push(m);
+  return pre+
+  '<div class="skip"><span>Not ready to lock in the details?</span><button type="button" class="linkbtn" data-act="skip">Skip this and talk to our team</button></div>'+
+  '<h1 class="title">Your incursion</h1><p class="lede">'+(setup.cart?"Choose what you\'d like and when. Your price builds as you go.":"Choose what you\'d like and when. Your quote arrives straight after you send this.")+'</p>'+
+  '<div class="group"><span class="f" style="font-weight:600">What are you booking?</span><div class="seg" role="group">'+
+    [["primary","Primary flights"],["secondary","Secondary flights"],["workshop","Custom workshop"]].map(function(t){return '<button type="button" data-type="'+t[0]+'" aria-pressed="'+(f.type===t[0])+'">'+t[1]+'</button>';}).join("")+
+  '</div>'+flightsHTML+'</div>'+
+  '<div class="group"><span class="f" style="font-weight:600">Year levels</span><div class="chips">'+
+    ["F","1","2","3","4","5","6","7","8","9","10","11","12"].map(function(y){return '<button type="button" class="chip" data-year="'+y+'" aria-pressed="'+(f.years.indexOf(y)>-1)+'">'+(y==="F"?"Foundation":"Year "+y)+'</button>';}).join("")+
+  '</div></div>'+
+  '<div class="group fields">'+
+    '<div><span class="f" style="font-weight:600">Number of students</span><div class="stepper"><button type="button" data-act="stu-" aria-label="Fewer students">&minus;</button><input name="students" inputmode="numeric" value="'+esc(f.students)+'" aria-label="Number of students"><button type="button" data-act="stu+" aria-label="More students">+</button></div>'+
+    '<p class="hint">Up to '+plan.max+' students per session'+(form.school?' in '+esc(stateLabel()):'')+'.</p></div>'+
+    '<div><span class="f" style="font-weight:600">Session length</span><div class="chips">'+lens+'</div>'+
+    (f.length==="custom"?'<label class="f" style="margin-top:10px">What length or format do you need?<input class="input" name="customNote" value="'+esc(f.customNote)+'" placeholder="For example: 2 hours with a break"></label>':'')+'</div>'+
+  '</div>'+
+  '<div id="groupNudge">'+groupNudgeHTML()+'</div>'+
+  '<div class="group"><span class="f" style="font-weight:600">Preferred date</span>'+
+    '<div id="calOpen">'+calendarHTML("open",calMonth)+'</div>'+
+    '<div id="dateStatus" aria-live="polite">'+dateStatusHTML()+'</div><div id="dateNudge"></div></div>'+
+  '<div class="group fields">'+
+    '<label class="f">First session starts<select class="select" name="start">'+times.map(function(m){var v=pad(Math.floor(m/60))+":"+pad(m%60);return '<option value="'+v+'"'+(f.start===v?" selected":"")+'>'+fromMin(m)+'</option>';}).join("")+'</select></label>'+
+    '<div><span class="f" style="font-weight:600">Sessions</span><div class="stepper"><button type="button" data-act="ses-" aria-label="Fewer sessions">&minus;</button><input name="sessions" readonly value="'+plan.count+'" aria-label="Number of sessions"><button type="button" data-act="ses+" aria-label="More sessions">+</button></div></div>'+
+  '</div>'+
+  '<div id="plan">'+planHTML()+'</div>'+
+  '<div class="actions"><button type="button" class="btn ghost" data-act="back">Back</button><button type="button" class="btn" data-act="next3">'+(setup.cart?"Review my booking":"Check my request")+'</button></div>';
+}
+function planHTML(){
+  var p=sessionPlan();
+  return '<div class="sessions">'+p.rows.map(function(r,i){
+    return '<div class="row"><b>Session '+(i+1)+'</b><span>'+(form.length==="custom"?"Time to confirm":fromMin(r.start)+" to "+fromMin(r.end))+'</span><b>'+r.students+' students</b></div>';
+  }).join("")+'</div>'+
+  '<p class="hint">Our crew arrives at '+fromMin(p.arrive)+' to set up. '+p.headsets+' headsets on the day.</p>'+
+  (p.late?'<div class="notice">The last session ends after 3:30pm. That usually works, and our team will confirm the timing with you.</div>':'');
+}
+function dateStatusHTML(){
+  var f=form;
+  if (!f.date) return '';
+  if (f.dateStatus==="checking") return '<div class="checking"><span class="spin"></span>Checking '+niceShort(f.date)+'...</div>';
+  if (f.dateRequest) return '<div class="notice">You\'ve asked our team about '+nice(f.date)+'. Finish the details and we\'ll call you about it.</div>';
+  if (f.dateStatus==="ok") return '<div class="good">'+nice(f.date)+' is available for your group.</div>';
+  return '';
+}
+var seen={};
+function fresh(key){var n=!seen[key];seen[key]=true;return n;}
+function forget(key){delete seen[key];}
+function showMoney(){return setup.cart;}
+function perk(key,p,t){return '<div class="perk'+(fresh("p:"+key)?' pop':'')+'"><span class="pct">'+p+' off</span><span>'+t+'</span></div>';}
+function deal(key,badge,text,btn,act){return '<div class="deal'+(fresh("d:"+key)?' fresh':'')+'"><span class="deal-badge">'+badge+'</span><span class="deal-text">'+text+'</span><button type="button" class="deal-btn" data-act="'+act+'">'+btn+'</button></div>';}
+function priceWith(mod){var keep=form;form=Object.assign({},keep,mod);var pr=pricing();form=keep;return pr;}
+function offerAmt(pr,key){var o=pr&&pr.offers.filter(function(x){return x.key===key;})[0];return o?o.amt:0;}
+function groupNudgeHTML(){
+  var n=+form.students||0;
+  if (!setup.offers.group||quoteOnly()){forget("p:group");forget("d:group");return '';}
+  if (n>=50){forget("d:group");var a=offerAmt(pricing(),"group");return perk("group","25%","Group discount unlocked"+(showMoney()&&a?". You save "+money(a):""));}
+  forget("p:group");
+  if (n<30) return '';
+  var add=50-n, now=pricing(), w=priceWith({students:50,sessionsWanted:0}), text;
+  if (showMoney()&&now&&w&&w.afterOffers<now.afterOffers) text="Add "+add+" more students and pay less: <b>"+money(w.afterOffers)+"</b> instead of "+money(now.afterOffers)+".";
+  else if (showMoney()&&offerAmt(w,"group")) text="Add "+add+" more students and take <b>"+money(offerAmt(w,"group"))+"</b> off the whole booking.";
+  else text="Add "+add+" more students and get 25% off the whole booking.";
+  return deal("group","25% off",text,"Make it 50 students","takeGroup");
+}
+function nearestOffpeak(s){var o=parse(s);for(var k=1;k<=10;k++){var c=[addDays(o,-k),addDays(o,k)];for(var j=0;j<2;j++){var d=c[j];if(d<TODAY)continue;if((d.getDay()===1||d.getDay()===5)&&availability(iso(d)).ok)return iso(d);}}return null;}
+function dateNudgeHTML(){
+  if (quoteOnly()) return '';
+  var out=[], d=form.date?parse(form.date):null, o=setup.offers, now=pricing();
+  if (o.early){
+    var ed=niceShort(iso(addDays(TODAY,EARLY_DAYS)));
+    if (d && daysBetween(TODAY,d)>=EARLY_DAYS){forget("d:early");var a=offerAmt(now,"early");out.push(perk("early","10%","Early bird unlocked"+(showMoney()&&a?". You save "+money(a):"")));}
+    else {forget("p:early");var est=now?round2(now.afterOffers*0.10):0;
+      out.push(deal("early","10% off","Book from "+ed+" and get the early bird discount"+(showMoney()&&est?", about <b>"+money(est)+"</b> off.":"."),"Show early bird dates","showEarly"));}
+  }
+  if (o.offpeak && d){
+    if (d.getDay()===1||d.getDay()===5){forget("d:offpeak");var b=offerAmt(now,"offpeak");out.push(perk("offpeak","10%",DOW[d.getDay()]+" saver unlocked"+(showMoney()&&b?". You save "+money(b):"")));}
+    else {forget("p:offpeak");var c=nearestOffpeak(form.date);form._offpeakCand=c;
+      if (c){var w=priceWith({date:c}), sv=now&&w?round2(now.afterOffers-w.afterOffers):0;
+        out.push(deal("offpeak","10% off","Move to "+nice(c)+" and save "+(showMoney()&&sv>0?"<b>"+money(sv)+"</b>":"10%")+".","Switch to "+niceShort(c),"takeOffpeak"));}}
+  }
+  return out.join("");
+}
+
+/* ---------- calendar ---------- */
+function calendarHTML(mode,month){
+  var y=month.getFullYear(), m=month.getMonth(), first=new Date(y,m,1), start=first.getDay();
+  var days=new Date(y,m+1,0).getDate(), cells="";
+  var prevOk = new Date(y,m,1) > new Date(TODAY.getFullYear(),TODAY.getMonth(),1);
+  for (var i=0;i<start;i++) cells+='<span></span>';
+  for (var dnum=1; dnum<=days; dnum++){
+    var d=new Date(y,m,dnum), s=iso(d), dis=false, cls="day";
+    if (d<TODAY) dis=true;
+    if (mode==="avail" && !dis) dis=!availability(s).ok;
+    if (form.date===s){ if (mode==="avail") cls+=" req"; else cls+=" sel"; }
+    if (setup.offers.offpeak && !dis && (d.getDay()===1||d.getDay()===5) && !quoteOnly()) cls+=" off";
+    if (mode==="open" && form.showEarly && setup.offers.early && !dis && daysBetween(TODAY,d)>=EARLY_DAYS && !quoteOnly()
+        && (setup.weekend==="instant"||(d.getDay()!==0&&d.getDay()!==6)) && !holidayOn(s,form.school?form.school.state:"VIC")) cls+=" eb";
+    cells+='<button type="button" class="'+cls+'" data-day="'+s+'" data-mode="'+mode+'"'+(dis?" disabled":"")+' aria-label="'+nice(s)+'">'+dnum+'</button>';
+  }
+  return '<div class="cal"><div class="cal-head"><button type="button" data-cal="'+mode+'" data-dir="-1" aria-label="Previous month"'+(prevOk?'':' disabled')+'>&lsaquo;</button><b>'+MONTH[m]+' '+y+'</b><button type="button" data-cal="'+mode+'" data-dir="1" aria-label="Next month">&rsaquo;</button></div>'+
+    '<div class="cal-grid">'+DOW.map(function(x){return '<span class="dow">'+x.charAt(0)+'</span>';}).join("")+cells+'</div>'+
+    (setup.offers.offpeak && !quoteOnly() ? '<div class="cal-legend"><i></i>Mondays and Fridays are 10% off</div>':'')+
+    (mode==="open" && form.showEarly && setup.offers.early && !quoteOnly() ? '<div class="cal-legend"><i style="background:none;border:2px solid var(--brand);width:10px;height:10px;border-radius:3px"></i>Outlined dates get the early bird discount</div>':'')+
+    (mode==="avail" && form.date ? '<div class="cal-legend" style="color:var(--warn)">Outlined: the date you asked for</div>':'')+'</div>';
+}
+
+/* ---------- cart ---------- */
+function cartHTML(){
+  var fl=flightObj(), est=estimate(), p=sessionPlan();
+  var name = form.type==="workshop"?"Custom workshop":(fl?fl.name:(form.flight==="help"?"Flight to choose with our team":"Choose a flight"));
+  var rows = [
+    ["Students",form.students],
+    ["Length",form.length==="custom"?"Custom":form.length+" min"],
+    ["Sessions",p.count],
+    ["Date",form.date?niceShort(form.date):"Not chosen"],
+    ["School",form.school?form.school.name:"Not chosen"]
+  ];
+  var priceLine = est===null ? '<div class="cart-total"><span>Price</span><span>Quoted by our team</span></div>' :
+    '<div class="cart-total"><span>From</span><b>'+money(est)+'</b></div><div class="cart-note">Ex GST. '+(est===MINIMUM&&form.students*PRICE[form.length]<MINIMUM?"Minimum booking applies. ":"")+'Offers and travel are worked out on the next step.</div>';
+  var offerCount = 0; var o=setup.offers;
+  if (!quoteOnly()){ if(o.pd)offerCount++; if(o.group&&form.students>=50)offerCount++; if(form.date){var d=parse(form.date); if(o.early&&daysBetween(TODAY,d)>=EARLY_DAYS)offerCount++; if(o.offpeak&&(d.getDay()===1||d.getDay()===5))offerCount++;} }
+  return '<div class="cart-head"><small>Your cart</small><b>'+esc(name)+'</b></div><div class="cart-body">'+
+    rows.map(function(r){return '<div class="cart-row"><span>'+r[0]+'</span><span>'+esc(r[1])+'</span></div>';}).join("")+
+    priceLine+(offerCount?'<div class="perk"><span class="pct">'+offerCount+'</span><span>offer'+(offerCount>1?"s":"")+' unlocked so far</span></div>':'')+'</div>';
+}
+
+/* ---------- step 4: cart review or request check ---------- */
+function detailsKV(){
+  var fl=flightObj(), p=sessionPlan(), s=form.school;
+  var rows=[
+    ["Booking for", form.first+" "+form.last+", "+form.role],
+    ["Email", form.email],["Mobile", form.phone],
+    ["School", s?s.name+", "+s.suburb+" "+s.state+" "+s.postcode:""],
+    ["Set up in", form.venue],
+    ["Flight", form.type==="workshop"?"Custom workshop":(fl?fl.name:"To choose with our team")],
+    ["Year levels", form.years.length?form.years.map(function(y){return y==="F"?"Foundation":y;}).join(", "):"Not given"],
+    ["Date", form.date?nice(form.date)+(form.dateRequest?" (to confirm)":""):"To discuss"],
+    ["Sessions", p.count+" x "+(form.length==="custom"?"custom length":form.length+" min")+", from "+fromMin(p.rows[0].start)],
+    ["Students", form.students+" ("+p.headsets+" headsets)"],
+    ["Parking and access", form.parking||"Not given"],
+    ["Sign-in", form.signin||"Not given"]
+  ];
+  return '<dl class="kv">'+rows.map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd></div>';}).join("")+'</dl>';
+}
+function ticketTop(label,stamp){
+  var fl=flightObj(), p=sessionPlan(), s=form.school;
+  var name = form.type==="workshop"?"Custom workshop":(fl?fl.name:"Your incursion");
+  return '<div class="ticket-top"><small>'+label+'</small><div class="flightname">'+esc(name)+'</div><div class="legs">'+
+    '<div><small>Date</small><b>'+(form.date?niceShort(form.date):"To discuss")+'</b></div>'+
+    '<div><small>First session</small><b>'+fromMin(p.rows[0].start)+'</b></div>'+
+    '<div><small>Students</small><b>'+form.students+' in '+p.count+' session'+(p.count>1?"s":"")+'</b></div>'+
+    '<div><small>Where</small><b>'+esc(s?s.suburb+" "+s.state:"")+'</b></div></div>'+(stamp?'<span class="okstamp" aria-hidden="true">Confirmed</span>':'')+'</div><div class="perf"></div>';
+}
+function linesHTML(pr){
+  if (!pr) return '<ul class="lines"><li class="line in"><span class="what"><b>Incursion</b><small>Priced for you by our team</small></span><span class="amt">Quote to follow</span></li></ul>';
+  var L=[], fl=flightObj();
+  L.push('<li class="line"><span class="what"><b>'+esc(fl?fl.name:"Incursion")+', '+form.length+' min</b><small>'+pr.n+' students x '+money(pr.p)+'</small></span><span class="amt">'+money(pr.raw)+'</span></li>');
+  if (pr.minApplied) L.push('<li class="line"><span class="what"><b>Minimum booking</b><small>Bookings start at '+money(MINIMUM)+'</small></span><span class="amt">'+money(pr.base)+'</span></li>');
+  if (pr.pd) L.push('<li class="line offer"><span class="what"><b>Teacher PD session</b><small>Free with this booking</small></span><span class="amt"><span class="was">'+money(PD_VALUE)+'</span>$0.00<span class="stamp">Free</span></span></li>');
+  pr.offers.forEach(function(o){L.push('<li class="line offer" data-offer="'+o.key+'"><span class="what"><b>'+esc(o.label)+', '+o.pct+'% off</b><small>'+esc(o.why)+'</small></span><span class="amt">-'+money(o.amt)+'<span class="stamp">Applied</span></span></li>');});
+  L.push('<li class="line"><span class="what"><b>Travel</b><small>'+esc(pr.travelNote)+'</small></span><span class="amt">'+(pr.travel===null?"To confirm":(pr.travel===0?"Free":money(pr.travel)))+'</span></li>');
+  L.push('<li class="line"><span class="what"><b>GST</b><small>10%</small></span><span class="amt">'+money(pr.gst)+'</span></li>');
+  return '<ul class="lines">'+L.join("")+'</ul>';
+}
+function step4HTML(){
+  var pr=pricing(), req=isRequest(), cart=setup.cart;
+  if (!cart) return requestCheckHTML();
+  var reasons=requestReasons();
+  return '<div class="ticket">'+ticketTop(req?"Your booking request":"Your booking")+
+    '<div class="ticket-body"><div class="reveal" id="reveal">'+linesHTML(pr)+'</div>'+
+    (pr?'<div class="totalbox"><div><small>Total inc GST</small><span class="big" id="bigTotal">'+money(pr.raw)+'</span></div><div style="text-align:right"><small>Ex GST</small><b>'+money(pr.ex)+'</b></div></div>'+
+      '<div class="savebanner" id="saveBanner">'+saveText(pr)+'</div>':'')+
+    (pr&&setup.offers.code&&!form.promoApplied?'<label class="f group">Promo code<div class="promo"><input class="input" name="promo" value="'+esc(form.promo)+'" placeholder="Enter code"><button type="button" class="btn ghost" data-act="applyPromo">Apply</button></div><div class="err" data-err="promo"></div></label>':'')+
+    (req?'<div class="notice group">'+reasons+'</div>':'')+
+    '<div class="twocol"><div><h2 class="h3">Booking details</h2>'+detailsKV()+'<p class="hint"><button type="button" class="linkbtn" data-act="goto3">Change details</button></p></div>'+
+    '<div><h2 class="h3">Invoice</h2><div class="fields" style="grid-template-columns:1fr">'+
+      '<label class="f">Purchase order number <span class="optional">(if your school uses them)</span><input class="input" name="po" value="'+esc(form.po)+'"></label>'+
+      '<label class="check"><input type="checkbox" name="terms"'+(form.terms?" checked":"")+'><span>I agree to the booking terms and cancellation policy.</span></label><div class="err" data-err="terms"></div>'+
+      (req?'<p class="hint">Nothing is charged yet. Our team confirms the details first.</p>':'<ul class="ready" style="font-size:14px;color:var(--muted)"><li>Your booking is confirmed on the next screen.</li><li>The invoice arrives by email, with 14 days to pay.</li><li>Pay by card or bank transfer, or send it to your finance team.</li></ul>')+
+    '</div></div></div>'+
+    '<div class="actions"><button type="button" class="btn ghost" data-act="back">Back</button><button type="button" class="btn" data-act="confirm">'+(req?"Send booking request":"Confirm booking"+(pr?" for "+money(pr.total):""))+'</button></div>'+
+    '</div></div>';
+}
+function saveText(pr){
+  var parts=[];
+  if (pr.saved>0) parts.push("You're saving "+money(pr.saved));
+  if (pr.pd) parts.push((parts.length?"plus":"You get")+" a free Teacher PD session worth "+money(PD_VALUE));
+  if (pr.skipped>0) parts.push("(best offer applied)");
+  return parts.length?parts.join(" ")+".":"";
+}
+function requestReasons(){
+  var r=[];
+  if (form.dateRequest) r.push("you've asked about a date our team needs to check");
+  if (form.type==="workshop") r.push("custom workshops are planned with you");
+  if (form.length==="custom") r.push("custom lengths are priced by our team");
+  if (form.flight==="help") r.push("our team will help you choose a flight");
+  if (!isActiveState() && form.school) r.push("we'll confirm travel to "+form.school.state);
+  return r.length?"We'll call you within one business day because "+r.join(", ")+".":"";
+}
+function requestCheckHTML(){
+  return '<h1 class="title">Check your request</h1><p class="lede">We\'ll email your quote straight after you send this. Nothing is booked or charged until you accept it.</p>'+
+    detailsKV()+'<p class="hint"><button type="button" class="linkbtn" data-act="goto3">Change details</button></p>'+
+    (setup.offers.code?'<label class="f group">Promo code <span class="optional">(optional)</span><div class="promo"><input class="input" name="promo" value="'+esc(form.promoApplied||form.promo)+'" placeholder="Enter code"><button type="button" class="btn ghost" data-act="applyPromo">Apply</button></div><div class="err" data-err="promo"></div></label>':'')+
+    '<div class="actions"><button type="button" class="btn ghost" data-act="back">Back</button><button type="button" class="btn" data-act="sendRequest">Send my request</button></div>';
+}
+
+/* ---------- loading ---------- */
+var loadingSteps=[];
+function loadingHTML(){
+  return headerHTML()+'<div class="shell"><div class="panel preflight"><h1 class="title">'+(view==="confirming"?"Confirming your booking":(setup.cart?"Putting your booking together":"Preparing your quote"))+'</h1>'+
+    '<p class="lede" style="margin-bottom:0">This takes a few seconds.</p><ol id="pre">'+loadingSteps.map(function(s,i){return '<li data-i="'+i+'"><span class="mk"></span><span>'+esc(s.t)+'<small>'+esc(s.d||"")+'</small></span></li>';}).join("")+'</ol></div></div>';
+}
+function runLoading(steps,next){
+  loadingSteps=steps; if (view!=="confirming") view="loading"; render();
+  var items=$$("#pre li"), i=0;
+  (function go(){
+    if (i>=items.length){ wait(450).then(next); return; }
+    var li=items[i]; li.classList.add("on");
+    wait(steps[i].ms||800).then(function(){ li.classList.remove("on"); li.classList.add("ok"); li.querySelector(".mk").textContent="\u2713";
+      if (steps[i].after){ li.querySelector("small").textContent=steps[i].after; }
+      i++; go(); });
+  })();
+}
+function priceSteps(){
+  var pr=pricing(), s=form.school, base=s&&BASES[s.state];
+  var offerCount = pr ? pr.offers.length+(pr.pd?1:0) : 0;
+  return [
+    {t:"Checking "+(form.date?niceShort(form.date):"your date")+" in "+(s?s.state:"your state"), ms:900,
+      after: form.dateRequest?"Passed to our team to check":(form.date?"Available":"Date to discuss")},
+    {t:"Measuring the drive to "+(s?s.name:"your school"), d:"Google Maps", ms:1100,
+      after: (s&&s.km!=null&&base)?s.km+" km from our "+base+" crew base":"Our team will confirm travel"},
+    {t:"Lining up your sessions and crew", ms:800, after: sessionPlan().count+" sessions, "+sessionPlan().headsets+" headsets"},
+    {t:"Applying your offers", ms:900, after: pr?(offerCount?offerCount+" offer"+(offerCount>1?"s":"")+" found":"No offers apply this time"):"Priced by our team"}
+  ];
+}
+
+/* reveal animation on the cart */
+function playReveal(){
+  var box=$("#reveal"); if(!box) return;
+  var pr=pricing(); var lines=$$(".line",box), big=$("#bigTotal");
+  var running = pr ? pr.raw : 0;
+  var i=0;
+  (function step(){
+    if (i>=lines.length){ if(big&&pr) countTo(big, running, pr.total); var sb=$("#saveBanner"); if(sb&&sb.textContent) setTimeout(function(){sb.classList.add("in");},300); return; }
+    var li=lines[i]; li.classList.add("in");
+    if (pr && big){
+      if (li.dataset.offer){ var o=pr.offers.filter(function(x){return x.key===li.dataset.offer;})[0]; var from=running; running=round2(running-o.amt); countTo(big,from,running); }
+      else if (i===1 && pr.minApplied){ running=pr.base; big.textContent=money(running); }
+    }
+    i++; setTimeout(step, reduced?0:(li.classList.contains("offer")?650:300));
+  })();
+}
+function countTo(el,from,to){
+  if (reduced){el.textContent=money(to);return;}
+  var t0=null,dur=500;
+  function f(ts){ if(!t0)t0=ts; var k=Math.min(1,(ts-t0)/dur); el.textContent=money(from+(to-from)*k); if(k<1)requestAnimationFrame(f); }
+  requestAnimationFrame(f);
+}
+
+/* ---------- outcomes ---------- */
+function invoiceNo(){return "INV-"+String(1000+(hash(form.email+"inv")%8999));}
+function bookingRef(){
+  var st=form.school?form.school.state:"AU", d=form.date?form.date.replace(/-/g,""):"TBC";
+  return "MF7-"+st+"-"+d+"-"+String(40+(hash(form.email)%59)).padStart(4,"0");
+}
+function outcomeHTML(){
+  var fl=flightObj(), pr=pricing();
+  if (view==="done"){
+    var p=sessionPlan(), s=form.school, inv=invoiceNo(), lenTxt=form.length+" min";
+    var dueD=addDays(TODAY,14), incD=parse(form.date); if (addDays(incD,-1)<dueD) dueD=addDays(incD,-1);
+    var day='<div class="kv-wrap"><h2 class="h3">Your day</h2><dl class="kv">'+
+      '<div><dt>Crew arrives</dt><dd>'+fromMin(p.arrive)+'</dd></div>'+
+      p.rows.map(function(r,i){return '<div><dt>Session '+(i+1)+'</dt><dd>'+fromMin(r.start)+' to '+fromMin(r.end)+', '+r.students+' students</dd></div>';}).join("")+
+      '<div><dt>Crew packs down by</dt><dd>'+fromMin(p.rows[p.rows.length-1].end+30)+'</dd></div>'+
+      '<div><dt>Where</dt><dd>'+esc(form.venue)+', '+esc(s.name)+'</dd></div>'+
+      '<div><dt>Headsets</dt><dd>'+p.headsets+'</dd></div></dl></div>';
+    var pay='<div class="paycard"><div class="paytop"><span>Invoice '+inv+'</span><span class="paid-chip">Unpaid</span></div>'+
+      '<div class="payamt">'+(pr?money(pr.total):"")+'</div><div class="hint" style="margin:0">Inc GST. Due '+nice(iso(dueD))+(form.po?'. Purchase order '+esc(form.po):'')+'</div>'+
+      '<div class="paybtns"><button type="button" class="btn" data-act="payNow">Pay now</button><button type="button" class="btn ghost" data-act="forwardFinance">Send to our finance team</button></div>'+
+      '<p class="hint">Also emailed to '+esc(form.email)+'. Card or bank transfer.</p></div>';
+    return headerHTML()+'<div class="shell"><div class="ticket">'+
+      ticketTop("Booking confirmed",true)+
+      '<div class="ticket-body"><div class="done-hero"><h1 class="title">You\'re booked in, '+esc(form.first)+'</h1>'+
+        '<p class="lede" style="margin:0 auto">Your class is flying on '+nice(form.date)+'. Booking reference <b style="white-space:nowrap">'+bookingRef()+'</b>, and a confirmation is on its way to '+esc(form.email)+'.</p></div>'+
+      '<div class="twocol">'+day+pay+'</div>'+
+      (pr&&pr.saved>0||pr&&pr.pd?'<div class="savebanner in" style="margin-top:22px">'+saveText(pr)+'</div>':'')+
+      (pr&&pr.pd?'<div class="deal" style="margin-top:12px"><span class="deal-badge">Free</span><span class="deal-text">Your <b>Teacher PD session</b> comes with this booking. Pick a time that suits your staff.</span><button type="button" class="deal-btn" data-act="pdTimes">Choose a PD time</button></div>':'')+
+      '<div class="twocol"><div><h2 class="h3">What happens next</h2><ul class="timeline">'+
+        '<li><span class="when">Now</span><span>Your confirmation and invoice arrive by email.</span></li>'+
+        '<li><span class="when">A week before</span><span>We confirm your crew and arrival time, and check the space.</span></li>'+
+        '<li><span class="when">Two days before</span><span>A reminder with everything for the day.</span></li>'+
+        '<li><span class="when">After</span><span>A short feedback form and classroom follow-up ideas.</span></li></ul></div>'+
+      '<div><h2 class="h3">Get your class ready</h2><ul class="ready">'+
+        '<li>A clear space about the size of a classroom, with two power points nearby.</li>'+
+        '<li>Students can wear their glasses under the headsets.</li>'+
+        '<li>A teacher stays with each session.</li>'+
+        '<li>Let families know with our ready-made note.</li></ul>'+
+        '<p><button type="button" class="linkbtn" data-act="parentNote">Download the note for families</button></p></div></div>'+
+      '<div class="actions"><button type="button" class="btn ghost" data-act="calAdd">Add to my calendar</button><button type="button" class="btn" data-act="again">Book another incursion</button></div>'+
+      '</div></div></div>';
+  }
+  var why = form.skipped ? "You asked to talk it through with our team." : requestReasons();
+  var title = setup.cart||form.skipped ? "Request sent" : "Your quote is on its way";
+  var quote = (!setup.cart && !form.skipped);
+  return headerHTML()+'<div class="shell"><div class="panel" style="max-width:760px;margin:0 auto">'+
+    '<h1 class="title">'+title+', '+esc(form.first||"thanks")+'</h1>'+
+    (quote ? quoteDocHTML() :
+      '<p class="lede">'+esc(why)+' Our bookings team will call '+esc(form.phone||"you")+(form.callTime?" in the "+form.callTime.toLowerCase():"")+', usually within one business day.</p>'+
+      '<h2 class="h3">What we have so far</h2>'+detailsKV())+
+    '<div class="actions"><span class="hint">Questions in the meantime? Call 1300 000 000.</span><button type="button" class="btn" data-act="again">Start a new booking</button></div></div></div>';
+}
+function quoteDocHTML(){
+  var pr=pricing(), req=isRequest();
+  return '<p class="lede">We\'ve emailed this quote to '+esc(form.email)+'. '+(req?"Our team will call you to finalise a few details first.":"Accept it from the email or right here.")+'</p>'+
+    '<div class="ticket" style="margin-top:8px">'+ticketTop("Quote "+bookingRef().replace("MF7-","Q-"))+'<div class="ticket-body"><div class="reveal" id="reveal">'+linesHTML(pr)+'</div>'+
+    (pr?'<div class="totalbox"><div><small>Total inc GST</small><span class="big" id="bigTotal">'+money(pr.raw)+'</span></div><div style="text-align:right"><small>Valid for</small><b>14 days</b></div></div><div class="savebanner" id="saveBanner">'+saveText(pr)+'</div>':'')+
+    '</div></div>'+
+    (!req&&pr?'<div class="actions"><button type="button" class="btn ghost" data-act="callMe">I have a question</button><button type="button" class="btn" data-act="acceptQuote">Accept quote and book</button></div>':'');
+}
+
+/* ---------- skip path ---------- */
+function skipHTML(){
+  return '<h1 class="title">Let\'s talk it through</h1><p class="lede">Tell us what you know so far and our bookings team will call you. Nothing is booked yet.</p>'+
+    '<div class="fields">'+
+    '<label class="f full">What do you have in mind? <span class="optional">(optional)</span><textarea class="textarea" name="skipNote" placeholder="For example: about 60 Year 5s, sometime in Term 1, interested in space or ecosystems">'+esc(form.skipNote)+'</textarea></label>'+
+    '<div class="full"><span class="f" style="font-weight:600">Best time to call</span><div class="chips">'+["Morning","Afternoon","After school"].map(function(t){return '<button type="button" class="chip" data-call="'+t+'" aria-pressed="'+(form.callTime===t)+'">'+t+'</button>';}).join("")+'</div></div></div>'+
+    '<div class="actions"><button type="button" class="btn ghost" data-act="backFromSkip">Back to the booking</button><button type="button" class="btn" data-act="sendSkip">Ask our team to call me</button></div>';
+}
+
+/* ---------- modals ---------- */
+function openModal(html){
+  $("#modalRoot").innerHTML='<div class="scrim" id="scrim"><div class="modal" role="dialog" aria-modal="true">'+html+'<button type="button" class="close" data-act="closeModal" aria-label="Close">&times;</button></div></div>';
+  var first=$("#modalRoot .modal button, #modalRoot .modal a"); if(first) first.focus();
+  $("#scrim").addEventListener("click",function(e){ if(e.target.id==="scrim") closeModal(); });
+}
+function closeModal(){ $("#modalRoot").innerHTML=""; if (view===3 && form.date && form.dateStatus==="no") recheckDate(); }
+function dateModal(dateStr,a){
+  modalMonth=new Date(parse(dateStr).getFullYear(),parse(dateStr).getMonth(),1);
+  var near=nearestAvailable(dateStr,3);
+  var html='<h2 class="title" style="font-size:24px;padding-right:40px">'+esc(reasonText(dateStr,a))+'</h2>'+
+    '<p class="lede" style="margin-bottom:0">You have two ways forward.</p><div class="split">'+
+    '<div class="side"><h3 class="h3">Choose another date</h3><p class="hint">These dates are open for '+form.students+' students in '+esc(stateLabel())+'.</p>'+
+      (near.length?'<div class="quick">'+near.map(function(s){return '<button type="button" class="chip" data-pick="'+s+'">'+niceShort(s)+'</button>';}).join("")+'</div>':'')+
+      '<div id="calAvail">'+calendarHTML("avail",modalMonth)+'</div></div>'+
+    '<div class="side alt"><h3 class="h3">Need '+niceShort(dateStr)+'?</h3><p>Our team can sometimes make it work with an extra crew, a different session time, or by splitting your group across two days.</p>'+
+      '<p class="hint">Keep this date, finish your details, and we\'ll call you about it within one business day.</p>'+
+      '<div class="actions" style="margin-top:16px"><button type="button" class="btn" data-act="keepDate">Keep '+niceShort(dateStr)+' and ask our team</button></div></div>'+
+    '</div>';
+  openModal(html);
+}
+function emailPreviewHTML(sample){
+  var f=sample?{first:"Sam",email:"sam.teacher@school.edu.au"}:form;
+  var fl=sample?FLIGHTS[3]:flightObj();
+  var cart=setup.cart;
+  var subject= cart?"Your incursion is still in your cart":"Finish your booking request";
+  var est = sample?MINIMUM*1.25:(estimate()||null);
+  return '<div class="email"><div class="meta"><div>From: <b>Mindflight7 Bookings</b></div><div>To: <b>'+esc(f.email||"you@school.edu.au")+'</b></div><div>Subject: <b>'+subject+'</b></div></div>'+
+    '<div class="bodym"><p>Hi '+esc(f.first||"there")+',</p><p>You started booking '+esc(fl?fl.name:"a VR incursion")+' but didn\'t get to the end. We\'ve saved everything you entered.</p>'+
+    (cart&&est?'<p>Your cart starts from <b>'+money(est)+'</b> ex GST'+(setup.offers.pd?', and this term every booking comes with a free Teacher PD session':'')+'.</p>':'')+
+    '<a class="btn" href="#" onclick="return false">Finish my booking</a>'+
+    '<p class="hint">Dates fill up quickly in Term 4. If you\'d rather talk it through, reply to this email or call 1300 000 000.</p></div></div>';
+}
+
+/* ---------- validation ---------- */
+function setErr(name,msg){var e=$('[data-err="'+name+'"]');if(e)e.textContent=msg||"";var i=$('[name="'+name+'"]');if(i)i.classList.toggle("bad",!!msg);}
+function validate1(){
+  var ok=true;
+  [["first","Enter your first name."],["last","Enter your last name."]].forEach(function(x){var v=form[x[0]].trim();setErr(x[0],v?"":x[1]);if(!v)ok=false;});
+  var em=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()); setErr("email",em?"":"Enter an email address like name@school.edu.au."); if(!em)ok=false;
+  var ph=form.phone.replace(/\D/g,"").length>=8; setErr("phone",ph?"":"Enter a mobile number so we can reach you on the day."); if(!ph)ok=false;
+  setErr("role",form.role?"":"Choose your role."); if(!form.role)ok=false;
+  return ok;
+}
+function validateManual(){
+  var ok=true;
+  var n=$('[name="m_name"]').value.trim(), sb=$('[name="m_suburb"]').value.trim(), st=$('[name="m_state"]').value, pc=$('[name="m_postcode"]').value.trim();
+  setErr("m_name",n?"":"Enter the school name."); if(!n)ok=false;
+  setErr("m_suburb",sb?"":"Enter the suburb."); if(!sb)ok=false;
+  setErr("m_state",st?"":"Choose the state."); if(!st)ok=false;
+  var pok=/^\d{4}$/.test(pc); setErr("m_postcode",pok?"":"Enter a 4-digit postcode."); if(!pok)ok=false;
+  if (ok) form.school={name:n,suburb:sb,state:st,postcode:pc,km:manualKm(st,pc)};
+  return ok;
+}
+
+/* ---------- live updates on step 3 ---------- */
+function refresh3(){
+  var p=$("#plan"); if(p) p.innerHTML=planHTML();
+  var c=$("#cart"); if(c) c.innerHTML=cartHTML();
+  var g=$("#groupNudge"); if(g) g.innerHTML=groupNudgeHTML();
+  var dn=$("#dateNudge"); if(dn) dn.innerHTML=dateNudgeHTML();
+  var ses=$('[name="sessions"]'); if(ses) ses.value=sessionPlan().count;
+}
+function redrawCal(){ var c=$("#calOpen"); if(c) c.innerHTML=calendarHTML("open",calMonth); }
+function pickDate(s){
+  form.date=s; form.dateRequest=false; form.dateStatus="checking";
+  redrawCal(); $("#dateStatus").innerHTML=dateStatusHTML(); refresh3();
+  checkTimer=setTimeout(function(){
+    var a=availability(s);
+    if (a.ok){ form.dateStatus="ok"; $("#dateStatus").innerHTML=dateStatusHTML(); refresh3(); }
+    else { form.dateStatus="no"; $("#dateStatus").innerHTML=""; dateModal(s,a); }
+  }, reduced?50:700);
+}
+function recheckDate(){
+  if (!form.date || form.dateRequest) return;
+  var a=availability(form.date);
+  if (!a.ok){ form.dateStatus="no"; var st=$("#dateStatus"); if(st) st.innerHTML='<div class="notice">'+esc(reasonText(form.date,a))+' <button type="button" class="linkbtn" data-act="reopenDate">See your options</button></div>'; }
+  else { form.dateStatus="ok"; var st2=$("#dateStatus"); if(st2) st2.innerHTML=dateStatusHTML(); }
+}
+
+/* ---------- events ---------- */
+function bind(){
+  var app=$("#app");
+  $$("input,select,textarea",app).forEach(function(el){
+    el.addEventListener("input",onInput); el.addEventListener("change",onInput);
+  });
+}
+function onInput(e){
+  var el=e.target, n=el.name, v=el.type==="checkbox"?el.checked:el.value;
+  if (view==="setup"){
+    if (n==="origin") setup.origin=v;
+    else if (n==="offer") setup.offers[el.value]=el.checked;
+    else if (n==="stacking") setup.stacking=v;
+    else if (n==="cart") setup.cart=(v==="on");
+    else if (n==="weekend") setup.weekend=v;
+    else if (n==="dailyCap") setup.dailyCap=Math.max(20,+v||150);
+    return;
+  }
+  if (n==="schoolq"){ if (e.type==="input") showResults(v); return; }
+  if (n==="students"){
+    var num=parseInt(v.replace(/\D/g,""),10)||0; form.students=Math.min(600,num); form.sessionsWanted=0;
+    if (e.type==="change"){ el.value=form.students; recheckDate(); }
+    refresh3(); return;
+  }
+  if (n==="start"){ form.start=v; refresh3(); return; }
+  if (n==="promo"){ form.promo=v.toUpperCase(); return; }
+  if (n in form) form[n]=v;
+  if (view===1 && e.type==="change") setErr(n,"");
+  if (view===3) refresh3();
+}
+function showResults(q){
+  var box=$("#results"); q=q.trim().toLowerCase();
+  if (q.length<2){ box.hidden=true; return; }
+  var hits=SCHOOLS.filter(function(s){return (s.name+" "+s.suburb+" "+s.postcode+" "+s.state).toLowerCase().indexOf(q)>-1;});
+  box.innerHTML = hits.length ? hits.map(function(s,i){return '<button type="button" data-school="'+SCHOOLS.indexOf(s)+'"><b>'+esc(s.name)+'</b><small>'+esc(s.suburb)+' '+s.state+' '+s.postcode+'</small></button>';}).join("") :
+    '<div style="padding:12px 14px" class="hint">No school matches "'+esc(q)+'". Try the suburb or postcode, or enter your school\'s details.</div>';
+  box.hidden=false;
+}
+
+document.addEventListener("click",function(e){
+  var t=e.target.closest("button,[data-day]"); if(!t) return;
+  var act=t.dataset.act;
+
+  /* calendars */
+  if (t.dataset.cal){
+    var dir=+t.dataset.dir;
+    if (t.dataset.cal==="open"){ calMonth=new Date(calMonth.getFullYear(),calMonth.getMonth()+dir,1); redrawCal(); }
+    else { modalMonth=new Date(modalMonth.getFullYear(),modalMonth.getMonth()+dir,1); $("#calAvail").innerHTML=calendarHTML("avail",modalMonth); }
+    return;
+  }
+  if (t.dataset.day){
+    if (t.dataset.mode==="open") pickDate(t.dataset.day);
+    else { chooseAvail(t.dataset.day); }
+    return;
+  }
+  if (t.dataset.pick){ chooseAvail(t.dataset.pick); return; }
+
+  /* chips and toggles */
+  if (t.dataset.venue){ form.venue=t.dataset.venue; $$("[data-venue]").forEach(function(b){b.setAttribute("aria-pressed",b===t);}); return; }
+  if (t.dataset.type){ form.type=t.dataset.type; if(form.type==="workshop"){form.flight=null;} else { var fo=flightObj(); if(fo&&fo.type!==form.type) form.flight=null; } form.length=form.type==="workshop"?"custom":(form.length==="custom"?60:form.length); keepScroll(render); return; }
+  if (t.dataset.flight){ form.flight=t.dataset.flight; var fl=flightObj(); if(fl&&typeof form.length==="number"&&fl.lengths.indexOf(form.length)<0) form.length=fl.lengths.indexOf(60)>-1?60:fl.lengths[0]; keepScroll(render); return; }
+  if (t.dataset.year){ var y=t.dataset.year,i=form.years.indexOf(y); if(i>-1)form.years.splice(i,1); else form.years.push(y); t.setAttribute("aria-pressed",i<0); return; }
+  if (t.dataset.len){ form.length=t.dataset.len==="custom"?"custom":+t.dataset.len; keepScroll(render); return; }
+  if (t.dataset.school){ var s=SCHOOLS[+t.dataset.school]; form.school=Object.assign({},s); form.manual=false; render(); toast("School added: "+s.name); return; }
+  if (t.dataset.call){ form.callTime=t.dataset.call; $$("[data-call]").forEach(function(b){b.setAttribute("aria-pressed",b===t);}); return; }
+
+  if (!act) return;
+  switch(act){
+    case "start": form=freshForm(); applyOrigin(); calMonth=new Date(TODAY.getFullYear(),TODAY.getMonth(),1); view=1; render(); break;
+    case "previewEmail": openModal('<h2 class="title" style="font-size:24px">Reminder email</h2><p class="hint">Sent if a teacher leaves after step 1 and ticked the reminder box. Wording changes with the price setting.</p>'+emailPreviewHTML(true)); break;
+    case "next1": if(validate1()){ view=2; render(); toast(form.remind?"Saved. If you get interrupted, we'll email you a link to carry on.":"Saved. You can come back to this booking."); } break;
+    case "manual": form.manual=true; form.school=null; render(); break;
+    case "searchAgain": form.manual=false; form.school=null; render(); break;
+    case "changeSchool": form.school=null; form.manual=false; render(); break;
+    case "next2":
+      if (form.manual && !validateManual()) break;
+      if (!form.school){ var q=$('[name="schoolq"]'); if(q){q.classList.add("bad");q.focus();} toast("Choose your school, or enter its details."); break; }
+      if (form.date) recheckDateSilently();
+      view=3; render(); break;
+    case "back": view=view-1; render(); break;
+    case "skip": form.skipped=true; view="skip"; render(); break;
+    case "backFromSkip": form.skipped=false; view=3; render(); break;
+    case "sendSkip": runLoading([{t:"Sending your request",ms:900,after:"Sent to our bookings team"}],function(){view="requested";render();}); break;
+    case "clearFlight": form.flight=null; keepScroll(render); break;
+    case "stu-": form.students=Math.max(1,(+form.students||0)-1); form.sessionsWanted=0; $('[name="students"]').value=form.students; refresh3(); recheckDate(); break;
+    case "stu+": form.students=Math.min(600,(+form.students||0)+1); form.sessionsWanted=0; $('[name="students"]').value=form.students; refresh3(); recheckDate(); break;
+    case "ses-": var p=sessionPlan(); form.sessionsWanted=Math.max(p.minS,p.count-1); refresh3(); break;
+    case "ses+": var p2=sessionPlan(); form.sessionsWanted=Math.min(p2.count+1,8); refresh3(); break;
+    case "takeGroup": form.students=50; form.sessionsWanted=0; var si=$('[name="students"]'); if(si) si.value=50; refresh3(); recheckDate(); toast("50 students. Group discount unlocked."); break;
+    case "showEarly": form.showEarly=true; var edd=addDays(TODAY,EARLY_DAYS); calMonth=new Date(edd.getFullYear(),edd.getMonth(),1); redrawCal(); var cc=$("#calOpen"); if(cc) cc.scrollIntoView({behavior:reduced?"auto":"smooth",block:"center"}); toast("Dates from "+niceShort(iso(edd))+" are 10% off. Pick one."); break;
+    case "takeOffpeak": if(form._offpeakCand){ var cd=parse(form._offpeakCand); calMonth=new Date(cd.getFullYear(),cd.getMonth(),1); pickDate(form._offpeakCand); } break;
+    case "reopenDate": dateModal(form.date,availability(form.date)); break;
+    case "keepDate": form.dateRequest=true; form.dateStatus="request"; closeModal(); redrawCal(); $("#dateStatus").innerHTML=dateStatusHTML(); refresh3(); break;
+    case "next3": if (validate3()){ if(setup.cart){ runLoading(priceSteps(),function(){view=4;render();playReveal();}); } else { view=4; render(); } } break;
+    case "goto3": view=3; render(); break;
+    case "applyPromo": applyPromo(); break;
+    case "confirm":
+      if (!form.terms){ setErr("terms","Tick to agree to the booking terms."); var tb=$('[name="terms"]'); if(tb){ tb.scrollIntoView({behavior:reduced?"auto":"smooth",block:"center"}); tb.focus(); } toast("Tick the booking terms to confirm."); break; }
+      if (isRequest()) runLoading([{t:"Sending your request",ms:900,after:"Sent to our bookings team"}],function(){view="requested";render();});
+      else { view="confirming"; runLoading([{t:"Holding your date",ms:700,after:"Held"},{t:"Creating your invoice",ms:900,after:"Emailed to "+form.email},{t:"Inviting your crew",ms:700,after:"Done"}],function(){view="done";render();}); }
+      break;
+    case "sendRequest": runLoading(priceSteps(),function(){view="requested";render();playReveal();}); break;
+    case "acceptQuote": runLoading([{t:"Holding your date",ms:700,after:"Held"},{t:"Creating your invoice",ms:900,after:"Emailed to "+form.email}],function(){view="done";render();}); break;
+    case "callMe": form.skipped=true; form.callTime=form.callTime||"Morning"; view="skip"; render(); break;
+    case "saveLater": saveLater(); break;
+    case "closeModal": closeModal(); break;
+    case "payNow": var pr2=pricing(); openModal('<h2 class="title" style="font-size:24px">Pay invoice '+invoiceNo()+'</h2><p class="lede">'+(pr2?money(pr2.total):'')+' inc GST. In the live version this opens your invoice in Xero.</p><div class="split" style="grid-template-columns:1fr 1fr"><div class="side"><h3 class="h3">Pay by card</h3><p class="hint">Visa, Mastercard or Amex through a secure payment page. Nothing is stored by Mindflight7.</p><div class="actions" style="margin-top:14px"><button type="button" class="btn" data-act="fakePay">Pay '+(pr2?money(pr2.total):'')+'</button></div></div><div class="side alt"><h3 class="h3">Bank transfer</h3><dl class="kv"><div><dt>BSB</dt><dd>000-000</dd></div><div><dt>Account</dt><dd>0000 0000</dd></div><div><dt>Reference</dt><dd>'+invoiceNo()+'</dd></div></dl><p class="hint">Sample details for the mockup.</p></div></div>'); break;
+    case "fakePay": closeModal(); var chip=$(".paid-chip"); if(chip){chip.textContent="Paid";chip.classList.add("is-paid");} toast("Payment received. A receipt is on its way (mockup)."); break;
+    case "forwardFinance": openModal('<h2 class="title" style="font-size:24px">Send to your finance team</h2><p class="lede">We\'ll email them the invoice and booking details so they can pay directly.</p><label class="f">Finance email<input class="input" name="financeEmail" type="email" placeholder="accounts@school.edu.au"></label><div class="actions"><button type="button" class="btn ghost" data-act="closeModal">Cancel</button><button type="button" class="btn" data-act="sendFinance">Send invoice</button></div>'); break;
+    case "sendFinance": var fe=$('[name="financeEmail"]'); var fv=fe?fe.value.trim():""; if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fv)){ if(fe){fe.classList.add("bad");fe.focus();} break;} closeModal(); toast("Invoice sent to "+fv+" (mockup)."); break;
+    case "pdTimes": toast("Our team will email you PD session times this week (mockup)."); break;
+    case "parentNote": toast("Note for families downloaded (mockup)."); break;
+    case "calAdd": toast("Calendar invite downloaded (mockup)."); break;
+    case "again": view="setup"; render(); break;
+  }
+});
+document.addEventListener("keydown",function(e){ if(e.key==="Escape" && $("#scrim")) closeModal(); });
+$("#toSetup").addEventListener("click",function(){ closeModal(); view="setup"; render(); });
+
+function keepScroll(fn){ var y=window.scrollY; fn(); window.scrollTo(0,y); }
+function recheckDateSilently(){ var a=availability(form.date); if(!form.dateRequest) form.dateStatus=a.ok?"ok":"no"; }
+function chooseAvail(s){
+  form.date=s; form.dateRequest=false; form.dateStatus="ok"; closeModal();
+  calMonth=new Date(parse(s).getFullYear(),parse(s).getMonth(),1);
+  redrawCal(); $("#dateStatus").innerHTML=dateStatusHTML(); refresh3();
+  toast(nice(s)+" is yours to book.");
+}
+function applyOrigin(){
+  if (setup.origin==="custom-workshop"){ form.type="workshop"; form.length="custom"; form.flight=null; return; }
+  var f=FLIGHTS.filter(function(x){return x.slug===setup.origin;})[0];
+  if (f){ form.type=f.type; form.flight=f.slug; form.length=f.lengths.indexOf(60)>-1?60:f.lengths[0]; }
+}
+function validate3(){
+  if (form.type!=="workshop" && !form.flight){ toast("Choose a flight, or pick Not sure yet."); return false; }
+  if (form.type==="workshop" && !form.brief.trim()){ toast("Tell us a little about the workshop."); var b=$('[name="brief"]'); if(b){b.classList.add("bad");b.focus();} return false; }
+  if (!(+form.students>0)){ toast("Enter the number of students."); return false; }
+  if (!form.date){ toast("Choose a preferred date."); var c=$("#calOpen"); if(c) c.scrollIntoView({behavior:reduced?"auto":"smooth",block:"center"}); return false; }
+  if (form.dateStatus==="checking") return false;
+  var a=availability(form.date);
+  if (!a.ok && !form.dateRequest){ dateModal(form.date,a); return false; }
+  return true;
+}
+function applyPromo(){
+  var v=(form.promo||"").trim().toUpperCase();
+  if (v==="TERM4"){ form.promoApplied="TERM4"; setErr("promo","");
+    if (view===4 && setup.cart){ keepScroll(function(){render();}); var lines=$$("#reveal .line"); lines.forEach(function(l){l.classList.add("in");}); var pr=pricing(); var big=$("#bigTotal"); if(big&&pr){ big.textContent=money(pr.total); } var sb=$("#saveBanner"); if(sb&&sb.textContent) sb.classList.add("in"); toast("TERM4 applied: 15% off."); }
+    else toast("TERM4 will be applied to your quote.");
+  } else if (!v){ setErr("promo","Enter a code first."); }
+  else { setErr("promo","That code isn't valid. Check the spelling, or leave it blank."); }
+}
+function saveLater(){
+  if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)){
+    openModal('<h2 class="title" style="font-size:24px">Save your booking</h2><p class="lede">Add your email on this step and we\'ll send you a link to finish later.</p><div class="actions"><button type="button" class="btn" data-act="closeModal">Okay</button></div>');
+    return;
+  }
+  openModal('<h2 class="title" style="font-size:24px">Saved for later</h2><p class="lede">We\'ve emailed a link to '+esc(form.email)+'. If you don\'t come back, this is the reminder you\'d get the next day.</p>'+emailPreviewHTML(false));
+}
+
+/* ---------- boot ---------- */
+form=freshForm(); view="setup"; calMonth=new Date(TODAY.getFullYear(),TODAY.getMonth(),1);
+render();
+})();
+</script>
+</body>
+</html>
